@@ -15,7 +15,7 @@ const rewrite = async (onClickData) => {
   console.log("Received selection:", selection);
 
   // The sentence "selection" is available in
-  fetch("https://jzsang--start-py-rewrite-dev.modal.run/", {
+  fetch("https://jzsang--start-py-rewrite.modal.run/", {
     method: "POST",
     headers: {
       "Content-Type": "application/json",
