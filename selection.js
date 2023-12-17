@@ -64,9 +64,5 @@ chrome.runtime.onMessage.addListener((request, sender, sendResponse) => {
       middleRewrite,
       `<mark>${middleRewrite}</mark>`
     );
-    clickedEl.classList.remove("loadingFadeRewriteSelection");
-    document
-      .querySelector(".loadingFadeRewriteSelection")
-      .classList.remove("loadingFadeRewriteSelection");
   }
 });
