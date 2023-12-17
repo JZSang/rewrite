@@ -7,6 +7,6 @@
 5. Click `Load unpacked` and select the folder that you unzipped rewrite to
 6. Select a piece of text from a paragraph and click `rewrite`
 
-# Example
+## Example
 https://github.com/JZSang/rewrite/assets/45303629/cb8a503b-a350-4af1-9bc0-7890c87585fd
 
