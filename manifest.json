@@ -1,0 +1,24 @@
+{
+  "manifest_version": 3,
+  "name": "Hello Extensions",
+  "description": "Base Level Extension",
+  "version": "1.0",
+  "permissions": [
+    "contextMenus"
+  ],
+  "content_scripts": [{
+    "matches": ["<all_urls>"],
+    "js": ["selection.js"],
+    "css": ["selection.css"]
+  }],
+  "background": {
+    "service_worker": "background.js"
+  },
+  "host_permissions": [
+    "https://jzsang--start-py-rewrite-dev.modal.run/"
+  ],
+  "action": {
+    "default_popup": "hello.html",
+    "default_icon": "hello_extensions.png"
+  }
+}
