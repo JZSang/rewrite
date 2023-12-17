@@ -1,4 +1,4 @@
-1. Download from rewrite.zip from (here)[https://github.com/JZSang/rewrite/releases/tag/0.1]
+1. Download from rewrite.zip from [here](https://github.com/JZSang/rewrite/releases/tag/0.1)
 2. Unzip rewrite.zip into a folder.
 3. If you're on Chrome/Edge/Arc. Go to `chrome://extensions` in the address bar.
 4. Enable `Developer Mode`
