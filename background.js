@@ -1,15 +1,13 @@
-const rewrite = async (onClickData) => {
+const rewrite = async () => {
   const [tab] = await chrome.tabs.query({
     active: true,
     lastFocusedWindow: true,
   });
-  const selection = onClickData.selectionText;
-  const innerText = (
+  const {innerText, selection} = (
     await chrome.tabs.sendMessage(tab.id, {
-      action: "beginRewrite",
-      selection,
+      action: "beginRewrite"
     })
-  ).innerText;
+  );
 
   console.log("Received innerText:", innerText);
   console.log("Received selection:", selection);

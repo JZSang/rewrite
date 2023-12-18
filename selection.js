@@ -1,10 +1,8 @@
-let innerText = null;
 let clickedEl = null;
 document.addEventListener(
   "contextmenu",
   (event) => {
     clickedEl = event.target;
-    innerText = clickedEl.innerHTML;
   },
   true
 );
@@ -13,6 +11,7 @@ let buildRewrite = null;
 let middleRewrite = "";
 let initialInnerHTML = "";
 let done = true;
+let selection = null;
 
 const replaceText = (selection) => {
   const twoParts = initialInnerHTML.split(selection);
@@ -44,10 +43,14 @@ chrome.runtime.onMessage.addListener((request, sender, sendResponse) => {
     middleRewrite = "";
     initialInnerHTML = clickedEl.innerHTML;
 
-    sendResponse({ innerText });
+    const div = document.createElement('div')
+    div.appendChild(document.getSelection().getRangeAt(0).cloneContents())
+    selection = div.innerHTML
+
+    sendResponse({ innerText: initialInnerHTML, selection });
     clickedEl.innerHTML = clickedEl.innerHTML.replace(
-      request.selection,
-      wrapText(request.selection, "span")
+      selection,
+      wrapText(selection, "span")
     );
   }
 
@@ -55,7 +58,7 @@ chrome.runtime.onMessage.addListener((request, sender, sendResponse) => {
     const additional = request.rewrite;
     middleRewrite += additional;
 
-    clickedEl.innerHTML = replaceText(request.selection);
+    clickedEl.innerHTML = replaceText(selection);
   }
 
   if (request.action === "endRewrite") {
@@ -64,5 +67,6 @@ chrome.runtime.onMessage.addListener((request, sender, sendResponse) => {
       middleRewrite,
       `<mark>${middleRewrite}</mark>`
     );
+    selection = "";
   }
 });
