@@ -1,0 +1,17 @@
+on:
+  push:
+    branches:
+    - main
+jobs:
+  zip-and-release:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+    steps:
+    - name: Check out repository code
+      uses: actions/checkout@v4
+    - run: zip rewrite.zip background.js selection.js selection.css manifest.json
+    - uses: ncipollo/release-action@v1
+      with:
+        artifacts: "rewrite.zip"
+    
