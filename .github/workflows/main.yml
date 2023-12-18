@@ -21,23 +21,8 @@ jobs:
       env:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
-    - name: Create Release
-      id: create_release
-      uses: actions/create-release@v1
-      env:
-        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+    - uses: ncipollo/release-action@v1
       with:
-        tag_name: ${{ steps.generate.outputs.new_tag }}
-        release_name: Release ${{ steps.generate.outputs.new_tag }}
-        draft: false
-        prerelease: false
-
-    - name: Upload Release Asset
-      uses: actions/upload-release-asset@v1
-      env:
-        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-      with:
-        upload_url: ${{ steps.create_release.outputs.upload_url }}
-        asset_path: ./rewrite.zip
-        asset_name: rewrite.zip
-        asset_content_type: application/zip
+        artifacts: "rewrite.zip"
+        tag: ${{ steps.generate.outputs.new_tag }}
+        commit: ${{ github.ref }}
