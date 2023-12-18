@@ -17,6 +17,7 @@ jobs:
 
     - name: Generate Tag
       uses: anothrNick/github-tag-action@1.30.0
+      id: generate
       env:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
@@ -26,8 +27,8 @@ jobs:
       env:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       with:
-        tag_name: ${{ steps.generate_tag.outputs.tag }}
-        release_name: Release ${{ steps.generate_tag.outputs.tag }}
+        tag_name: ${{ steps.generate.outputs.new_tag }}
+        release_name: Release ${{ steps.generate.outputs.new_tag }}
         draft: false
         prerelease: false
 
